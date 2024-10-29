@@ -1,0 +1,15 @@
+.navbar{
+    background-color: #D9D9D9;
+}
+
+.canvaC{
+    background-color: #515961 !important;
+}
+
+.offcanvas.offcanvas-start{
+    width:  220px !important;
+}
+
+.active{
+    background-color: #7A6FB1 !important;
+}

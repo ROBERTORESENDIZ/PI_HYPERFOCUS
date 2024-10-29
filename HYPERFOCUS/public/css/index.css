@@ -1,0 +1,14 @@
+h1{
+    background-color: #fff;
+    background-image:  url("/img/título.png");
+    background-size: cover; /* Ajusta la imagen para cubrir el área del div */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    width: auto; /* Ancho del div */
+    height: 300px;
+}
+
+/* body{
+    background-image:  url("/img/título.png");
+} */
+

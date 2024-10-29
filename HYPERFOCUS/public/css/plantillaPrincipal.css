@@ -1,0 +1,43 @@
+html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background-color: #FAF9F9;
+}
+
+
+
+.header1{
+    background-color: #FFFFFF;
+
+}
+
+
+.ttHyperfocus{
+    text-decoration:none;
+    color: #786DB0;
+    margin-left: 5px;
+}
+
+.tnav{
+    color: #786DB0 !important;
+}
+
+.login{
+    margin-right: 20px;
+}
+
+.logo{
+    margin-left: 20px;
+    margin-right: 3px;
+}
+
+
+footer {
+    margin-top: auto;
+    background-color: #D9D9D9;
+}
