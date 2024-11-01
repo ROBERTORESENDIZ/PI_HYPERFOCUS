@@ -11,17 +11,17 @@
             @csrf
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
                 <small class="text-danger">{{ $errors->first('nombre') }}</small>
             </div>
             <div class="form-group">
                 <label for="apellido">Apellido:</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" required>
+                <input type="text" class="form-control" id="apellido" name="apellido" value="{{ old('apellido') }}" required>
                 <small class="text-danger">{{ $errors->first('apellido') }}</small>
             </div>
             <div class="form-group">
                 <label for="email">Correo electrónico:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
                 <small class="text-danger">{{ $errors->first('email') }}</small>
             </div>
             <div class="form-group">
