@@ -19,3 +19,5 @@ Route::view('/misemana','miSemana')->name('rutamisemana');
 Route::view('/concentracion','concentracion')->name('rutaconcentracion');
 Route::view('/memoria','memoria')->name('rutamemoria');
 Route::view('/mislogros','misLogros')->name('rutamislogros');
+
+
