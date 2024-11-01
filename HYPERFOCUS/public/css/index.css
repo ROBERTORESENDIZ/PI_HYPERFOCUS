@@ -1,14 +1,51 @@
-h1{
-    background-color: #fff;
-    background-image:  url("/img/título.png");
-    background-size: cover; /* Ajusta la imagen para cubrir el área del div */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    width: auto; /* Ancho del div */
-    height: 300px;
+
+.cont{
+    background-image: url('/img/título.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain; /* Mantiene la escala original de la imagen sin recortar */
+    width: 100%;  /* Ajusta el ancho del contenedor */
+    height: 50vh; /* O la altura que desees */
 }
 
-/* body{
-    background-image:  url("/img/título.png");
-} */
+.cf{
+    background-color: #D9D9D9;
+}
 
+
+.fuente{
+    font-family: "Lily Script One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12vh;
+}
+
+.fonc{
+    
+    background-image: url('/img/fondo1.svg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain; /* Mantiene la escala original de la imagen sin recortar */
+    width: 25vw;  /* Ajusta el ancho del contenedor */
+    height: 50%;
+}
+
+.fonc2{
+    
+    background-image: url('/img/fondo2.svg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain; /* Mantiene la escala original de la imagen sin recortar */
+    width: 25vw;  /* Ajusta el ancho del contenedor */
+    height: 50%;
+}
+
+.fonc3{
+    
+    background-image: url('/img/fondo3.svg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain; /* Mantiene la escala original de la imagen sin recortar */
+    width: 25vw;  /* Ajusta el ancho del contenedor */
+    height: 50%;
+}
