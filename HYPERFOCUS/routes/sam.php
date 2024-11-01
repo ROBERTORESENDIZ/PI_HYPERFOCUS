@@ -7,3 +7,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::view('/prueba','welcome');
+
+
+////otra vez
