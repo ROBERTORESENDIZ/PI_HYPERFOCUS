@@ -6,3 +6,5 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 
 
+// Ruta para la página de inicio del usuario
+Route::view('/memoriacrud', 'memoriacrud')->name('rutamemoriacrud');

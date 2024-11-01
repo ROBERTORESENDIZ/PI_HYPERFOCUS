@@ -2,7 +2,7 @@
 @section('modulo','| Memoria')
 @section('seccion')
 <link href="{{ asset('/css/memoria.css') }}" rel="stylesheet">
-    
+
 <div class="row">
     <h1 class="text-center">Memoria</h1>
     <div class="container">
@@ -16,10 +16,13 @@
             </div>
         </div>
         
-        <div class="new-card">
-            <div class="plus-sign">+</div>
-            <div>Crear</div>
-        </div>
+        <!-- Envolver la tarjeta de crear en un enlace -->
+        <a href="{{ route('rutamemoriacrud') }}" class="new-card-link">
+            <div class="new-card">
+                <div class="plus-sign">+</div>
+                <div>Crear</div>
+            </div>
+        </a>
     </div>
 </div>
 
