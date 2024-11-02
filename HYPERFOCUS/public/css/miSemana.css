@@ -1,0 +1,146 @@
+.container-fluid {
+    padding: 20px;
+}
+
+.calendar-section,
+.time-distribution,
+.activities-section {
+    margin-bottom: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.calendar-table {
+    margin-top: 15px;
+}
+
+.calendar-table table {
+    width: 100%;
+    border: 1px solid #dee2e6;
+}
+
+.time-section {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.time-inputs input[type="time"] {
+    padding: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.activities-section .form-group {
+    margin-bottom: 15px;
+}
+
+.activities-section label {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+/* Estilos para los modales */
+.modal-content {
+    border-radius: 8px;
+}
+
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+}
+
+/* Estilos para los botones */
+.btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .time-inputs {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .time-inputs input[type="time"] {
+        width: 100%;
+    }
+}
+.time-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.time-item button {
+    padding: 2px 8px;
+}
+
+.calendar-controls {
+    max-width: 200px;
+}
+
+.badge {
+    padding: 8px 12px;
+}
+
+.time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.time-inputs select {
+    min-width: 120px;
+}
+
+.time-inputs input[type="time"] {
+    min-width: 100px;
+}
+
+@media (max-width: 768px) {
+    .time-inputs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .time-inputs > * {
+        width: 100%;
+    }
+}
