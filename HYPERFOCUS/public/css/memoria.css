@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Para asegurar que el body ocupe al menos toda la altura de la ventana */
+}
+
+.row {
+    flex: 1; /* Para permitir que la fila ocupe el espacio disponible */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en varias líneas */
+    gap: 20px;
+    justify-content: center; /* Centra los elementos dentro del contenedor */
+}
+
+.card, .new-card {
+    width: 150px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 10px;
+    background-color: white;
+    transition: transform 0.2s; /* Suaviza la animación de escalado al hacer hover */
+}
+
+.card:hover, .new-card:hover {
+    transform: scale(1.05); /* Aumenta un poco el tamaño al hacer hover */
+}
+
+.card .title {
+    background-color: #bde0fe;
+    color: #0074cc;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 10px;
+}
+
+.card .concepts {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.card .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.card .buttons button {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    color: white;
+}
+
+.card .practice-btn { background-color: #a3e635; }
+.card .edit-btn { background-color: #4ade80; }
+.card .delete-btn { background-color: #f87171; }
+
+.new-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 150px;
+    color: #555;
+    cursor: pointer;
+}
+
+.new-card .plus-sign {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.new-card:hover {
+    background-color: #f0f8ff;
+}
