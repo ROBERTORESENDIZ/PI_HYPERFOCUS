@@ -5,7 +5,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
 <div class="container d-flex align-items-center justify-content-center" style="height: 100vh; position: relative;">
     <!-- Formulario de inicio de sesión -->
     <div class="card p-4" style="width: 300px;">
@@ -17,11 +16,13 @@
             @csrf
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                <small class="text-danger">{{ $errors->first('email') }}</small>
             </div>
             <div class="form-group mt-3">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
+                <small class="text-danger">{{ $errors->first('password') }}</small>
             </div>
             <button type="submit" class="btn btn-primary btn-block mt-4">Iniciar sesión</button>
             <div class="text-center mt-3">
@@ -30,6 +31,7 @@
         </form>
     </div>
 </div>
+
 <script>
     function showPasswordResetAlert() {
         Swal.fire({

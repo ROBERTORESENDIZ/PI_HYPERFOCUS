@@ -11,3 +11,4 @@ use App\Http\Controllers\inicioSController;
 
 Route::post('/iniciarsesion', [inicioSController::class, 'iniciarsesion'])->name('rutainiciarsesion');
 
+Route::post('/registrarse', [inicioSController::class, 'registrarse'])->name('registrarse');

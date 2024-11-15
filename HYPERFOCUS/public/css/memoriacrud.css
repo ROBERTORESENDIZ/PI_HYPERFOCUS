@@ -1,0 +1,39 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.container h2 {
+    font-weight: bold;
+}
+
+.back-btn {
+    font-size: 2rem; 
+    color: black; 
+    text-decoration: none; 
+    margin-right: 10px; 
+}
+
+.back-btn:hover {
+    color: #0074cc; 
+}
+
+.table {
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #f3f0ff;
+    color: black;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.table td button {
+    margin: 0 3px;
+}
+

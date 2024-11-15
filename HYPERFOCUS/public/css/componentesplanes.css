@@ -1,0 +1,34 @@
+
+.pricing-card {
+  width: 100%;
+  max-width: 300px; /* Ancho máximo para pantallas grandes */
+  margin: auto;
+  border-radius: 10px;
+  background-color: #f7f7d1; /* Color amarillo claro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pricing-card .card-header {
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 10px 0;
+}
+
+.pricing-card .card-body ul li {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.pricing-card .card-body ul li i {
+  color: #4caf50; /* Color del icono de verificación */
+  margin-right: 8px;
+}
+
+.pricing-card .price {
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #333;
+}
