@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('contraseña', 255);
             $table->string('foto_perfil', 255);
             $table->integer('edad');
+            $table->unsignedBigInteger('rol_id');
             $table->timestamps();
+            $table->foreign('rol_id')->references('id')->on('roles');
         });
     }
 

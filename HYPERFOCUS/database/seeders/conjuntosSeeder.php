@@ -19,17 +19,20 @@ class conjuntosSeeder extends Seeder
                 'nombre' => 'Verbos en ingles',
                 'descripcion' => 'Verbos regulares',
                 'fecha_creacion' =>Carbon::now(),
+                'created_at'=>Carbon::now()
                
             ],
             [
                 'nombre' => 'Verbos en ingles',
                 'descripcion' => 'Verbos irregulares',
                 'fecha_creacion' =>Carbon::now(),
+                'created_at'=>Carbon::now()
             ],
             [
                 'nombre' => 'Phrasal Verbs',
                 'descripcion' => 'Verbos compuestos',
                 'fecha_creacion' =>Carbon::now(),
+                'created_at'=>Carbon::now()
             ]
             ]);
     }

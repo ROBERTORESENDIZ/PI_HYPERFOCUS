@@ -18,6 +18,10 @@ return new class extends Migration
             $table->integer('aciertos');
             $table->integer('fallos');
             $table->integer('intentos');
+            $table->unsignedBigInteger('conjunto_id');
+            $table->unsignedBigInteger('usuario_id');
+            $table->foreign('conjunto_id')->references('id')->on('conjuntos');
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
             $table->timestamps();
         });
     }

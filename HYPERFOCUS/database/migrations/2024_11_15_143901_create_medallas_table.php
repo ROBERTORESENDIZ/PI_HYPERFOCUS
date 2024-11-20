@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre',255);
             $table->longtext('descripcion');
-            $table->string('condicion_recompensa');
+            $table->string('condicion_recompensa',255);
             $table->datetime('fecha_creacion');
             $table->timestamps();
         });

@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('usuarios_medallas', function (Blueprint $table) {
             $table->id();
             $table->dateTime('fecha');
+            $table->unsignedBigInteger('usuario_id');
+            $table->unsignedBigInteger('medalla_id');
             $table->timestamps();
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->foreign('medalla_id')->references('id')->on('medallas');
         });
     }
 

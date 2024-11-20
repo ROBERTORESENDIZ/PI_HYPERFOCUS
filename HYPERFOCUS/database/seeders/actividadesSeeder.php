@@ -14,6 +14,7 @@ class actividadesSeeder extends Seeder
      */
     public function run(): void
     {
+        //INSERTS MANUALES
         DB::table('actividades')->insert([
             [
                 'nombre' => 'Ir a la escuela',
@@ -22,7 +23,10 @@ class actividadesSeeder extends Seeder
                 'duracion' =>120,
                 'fecha_hora_inicio'=>'2023-01-17 16:01:00',
                 'fecha_hora_fin'=>'2023-01-17 18:00:00',
-                'completada'=>1
+                'completada'=>1,
+                'usuario_id'=>1,
+                'pioridad_id'=>1,
+                'created_at'=>Carbon::now()
             ],
             [
                 'nombre' => 'Ir al super',
@@ -31,7 +35,10 @@ class actividadesSeeder extends Seeder
                 'duracion' =>60,
                 'fecha_hora_inicio'=>'2023-01-18 16:00:00',
                 'fecha_hora_fin'=>'2023-01-18 19:01:00',
-                'completada'=>0
+                'completada'=>0,
+                'usuario_id'=>3,
+                'pioridad_id'=>2,
+                'created_at'=>Carbon::now()
             ],
             [
                 'nombre' => 'Ir a nadar',
@@ -40,7 +47,10 @@ class actividadesSeeder extends Seeder
                 'duracion' => 80,
                 'fecha_hora_inicio'=>'2023-01-19 16:01:00',
                 'fecha_hora_fin'=>'2023-01-19 17:01:00',
-                'completada'=>1
+                'completada'=>1,
+                'usuario_id'=>2,
+                'pioridad_id'=>3,
+                'created_at'=>Carbon::now()
             ]
             ]);
     }
