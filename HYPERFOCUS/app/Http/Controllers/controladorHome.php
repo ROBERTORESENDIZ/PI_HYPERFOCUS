@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 
 class controladorHome extends Controller
 {
@@ -12,10 +12,12 @@ class controladorHome extends Controller
         // $fechaHoy = now()->toDateString();
 
         //Obtención fecha con formato
-        $fechaHoy = now()->format('d/m/Y');
+        // $fechaHoy = now()->format('d/m/Y');
+        $fechaHoy = Carbon::now()->format('d/m/Y');
 
         //Obtención de nombre del día
-        $nombreDia = now()->locale('es')->dayName;
+        // $nombreDia = now()->locale('es')->dayName;
+        $nombreDia = Carbon::now()->locale('es')->dayName;
 
         $totalActD = 5;
         $totalActS =10;
