@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use Carbon\Carbon;   
 
 class usuarioSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class usuarioSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        //INSERTS MANUALES
         DB::table('usuarios')->insert([
         [
             'nombre' => 'John Doe',
@@ -22,7 +22,9 @@ class usuarioSeeder extends Seeder
             'correo_electronico' => 'josecab2003@gmail.com',
             'contraseña' => 'contrasena123',
             'foto_perfil'=>'public/img/foto_perfil',
-            'edad'=>12,
+            'edad'=>19,
+            'rol_id'=>1,
+            'created_at'=>Carbon::now()
         ],
         [
             'nombre' => 'Jose ',
@@ -31,6 +33,8 @@ class usuarioSeeder extends Seeder
             'contraseña' => 'contra123',
             'foto_perfil'=>'public/img/foto_perfil',
             'edad'=>21,
+            'rol_id'=>2,
+            'created_at'=>Carbon::now()
         ],
         [
             'nombre' => 'Ivan',
@@ -39,6 +43,8 @@ class usuarioSeeder extends Seeder
             'contraseña' => 'contrasena123',
             'foto_perfil'=>'public/img/foto_perfil',
             'edad'=>20,
+            'rol_id'=>3,
+            'created_at'=>Carbon::now()
         ]
         ]);
     }

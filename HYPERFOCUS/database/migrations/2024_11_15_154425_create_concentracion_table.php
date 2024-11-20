@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('tiempo_intervalos_concentracion');
             $table->integer('cant_intervalos_descanso');
             $table->integer('tiempo_intervalos_descanso');
+            $table->unsignedBigInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
             $table->timestamps();
         });
     }
