@@ -20,6 +20,10 @@ return new class extends Migration
             $table->datetime('fecha_hora_inicio');
             $table->datetime('fecha_hora_fin');
             $table->tinyinteger('completada');
+            $table->unsignedBigInteger('usuario_id');
+            $table->unsignedBigInteger('pioridad_id');
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->foreign('pioridad_id')->references('id')->on('pioridades');
             $table->timestamps();
         });
     }

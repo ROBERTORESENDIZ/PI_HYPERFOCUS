@@ -17,6 +17,8 @@ return new class extends Migration
             $table->datetime('fecha_solicitud');
             $table->datetime('fecha_expiracion');
             $table->tinyinteger('estatus_reestablecimiento');
+            $table->unsignedBigInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
             $table->timestamps();
         });
     }
