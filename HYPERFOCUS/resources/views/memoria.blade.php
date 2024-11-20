@@ -16,7 +16,7 @@
             </div>
         </div>
         
-        <!-- Envolver la tarjeta de crear en un enlace -->
+       
         <a href="{{ route('rutamemoriacrud') }}" class="new-card-link">
             <div class="new-card">
                 <div class="plus-sign">+</div>

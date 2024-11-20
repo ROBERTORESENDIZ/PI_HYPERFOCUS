@@ -1,0 +1,38 @@
+
+.coCant {
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.fa-3x {
+    color: #ffc107;
+}
+
+h2 {
+    color: #343a40;
+    font-weight: bold;
+}
+
+canvas {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button.btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+button.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}

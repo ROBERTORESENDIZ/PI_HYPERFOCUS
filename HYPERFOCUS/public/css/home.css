@@ -1,0 +1,20 @@
+.rowP{
+    margin-top: 2%;
+    
+}
+
+.fontP{
+    font-family:  "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.fontS{
+    font-family: "Ruluko", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.cProgreso{
+    background-color: #A5D6A7;
+}
