@@ -25,9 +25,15 @@ class controladorHome extends Controller
         $finS2 = Carbon::now()->yesterday()->format('y/m/d');
 
         // Consulta de la informacion para llenar la vista home
+        $consultaUSER = DB::table('usuarios')
+            ->select('nombre')
+            ->where('id', '=', $us)
+            ->get();
+
+
         $consultaA = DB::table('actividades')
             ->join('usuarios', 'actividades.usuario_id', '=', 'usuarios.id')
-            ->select('usuarios.nombre as nomU', 'actividades.nombre', 'actividades.completada', 'actividades.id')
+            ->select( 'actividades.nombre', 'actividades.completada', 'actividades.id')
             ->where('usuario_id', '=', $us)
             ->where('fecha_hora_inicio','=', $fechaconsulta)
             ->get();
@@ -41,7 +47,14 @@ class controladorHome extends Controller
             ->where('usuario_id','=', $us)
             ->get();
 
-        $totalActS = count($consultaActS);
+            if ($consultaActS->isEmpty()) {
+                $totalActS = 1;
+            }else{
+                $totalActS = count($consultaActS);
+            }
+
+        
+        
 
         // Numero de actividades realizadas
         $consultaActRS = DB::table('actividades')
@@ -49,10 +62,16 @@ class controladorHome extends Controller
             ->where('usuario_id','=', $us)
             ->where('completada','=', '1')
             ->get();
-        
-        $totalActRS = count($consultaActRS);
 
-        return view('home',compact('totalActD','consultaA','totalActS','totalActRS','fechaHoy','nombreDia' ));
+            if ($consultaActRS->isEmpty() AND $consultaActS->isEmpty()) {
+                $totalActRS = 1;
+            }else{
+                $totalActRS = count($consultaActRS);
+            }
+        
+        
+
+        return view('home',compact('totalActD','consultaA', 'consultaUSER','totalActS','totalActRS','fechaHoy','nombreDia' ));
     }
 
 
