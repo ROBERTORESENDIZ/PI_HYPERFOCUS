@@ -12,7 +12,7 @@
         <div class="text-center mb-4">
             <i class="fas fa-user-circle fa-3x"></i> 
         </div>
-        <form action="/iniciarsesion" method="POST"> 
+        <form action="{{ route('rutainiciarsesion') }}" method="POST"> 
             @csrf
             <div class="form-group">
                 <label for="email">Email</label>
@@ -27,6 +27,9 @@
             <button type="submit" class="btn btn-primary btn-block mt-4">Iniciar sesión</button>
             <div class="text-center mt-3">
                 <a href="#" onclick="showPasswordResetAlert()">¿Olvidaste la contraseña?</a>
+            </div>
+            <div class="text-center mt-3">
+                <small>¿No tienes una cuenta? <a href="{{ route('registrarse') }}">Registrate</a></small>
             </div>
         </form>
     </div>
@@ -45,3 +48,4 @@
     }
 </script>
 @endsection
+

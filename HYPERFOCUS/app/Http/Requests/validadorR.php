@@ -16,9 +16,10 @@ class validadorR extends FormRequest
         return [
             'nombre' => 'required|string|max:10',
             'apellido' => 'required|string|max:10',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:usuarios,correo_electronico',  // Cambié 'users' por 'usuarios'
             'password' => 'required|min:6',
         ];
     }
 }
+
 
