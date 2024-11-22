@@ -14,6 +14,7 @@ class actividadesSeeder extends Seeder
      */
     public function run(): void
     {
+
         // INSERTS MANUALES
     DB::table('actividades')->insert([
     [
@@ -62,6 +63,7 @@ class actividadesSeeder extends Seeder
         'updated_at' => Carbon::now()
     ]
 ]);
+
 
     }
 }
