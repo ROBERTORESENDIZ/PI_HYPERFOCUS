@@ -10,12 +10,13 @@
                 <div class="row">
 
                     <div class="mb-5 col-md-12 col-sm-12 text-center fontP">
-                        <h1>Hola Usuario!</h1>
+                        <h1><strong>Hola {{$consultaA[0]->nomU}}!</strong></h1>
+                        <!-- {{$consultaA[0]->nomU}}! -->
                     </div>
 
                     <!-- Actividades del día -->
                     <div class="col-md-4 ms-md-5  col-sm-12 mb-3 fontP ">
-                        <h5>Actividades del día: </h5>
+                        <h4>Actividades del día: </h4>
                         <h5 class="text-center">{{$nombreDia }} {{ $fechaHoy}}</h5>
 
                         <!-- Inicio card list  -->
@@ -23,18 +24,25 @@
                             <ul class="list-group list-group-flush ">
                                 <form action="/guardarProgreso" method="POST">
                                     @csrf
-                                @for($i=0; $i< $totalActD; $i++)
+                                    <!-- Iteramos las actividades -->
+                                    @foreach($consultaA as $cliente)
                                     <li class="list-group-item">
                                         <div class="form-check">
-                                            <input class="form-check-input border-dark me-2 mb-1 progressCheckbox" type="checkbox" value="" id="checkbox-{{$i}}" onchange="updateProgress()">
+                                            <!-- Validamos que actividades estan realizadas o no -->
+                                            @if( $cliente->completada == 0)
+                                                <input class="form-check-input border-dark me-2 mb-1 " name="{{$cliente->id}}" type="hidden"  value="0">
+                                                <input class="form-check-input border-dark me-2 mb-1 progressCheckbox" name="{{$cliente->id}}" type="checkbox"  value="1"  onchange="updateProgress()">
+                                            @else
+                                                <input class="form-check-input border-dark me-2 mb-1 " name="{{$cliente->id}}" type="hidden"  value="0">
+                                                <input class="form-check-input border-dark me-2 mb-1 progressCheckbox" name="{{$cliente->id}}" type="checkbox" checked="checked" value="1"  onchange="updateProgress()">
+                                            @endif
+
                                             <label class="form-check-label" for="flexCheckIndeterminate">
-                                               {{$actD[$i]}}
+                                               {{$cliente->nombre}}
                                             </label>
                                         </div>
                                     </li>
-                                @endfor
-                                
-                                
+                                    @endforeach
                             </ul>
                         </div>
                         <button type="sumit" class=" btn btn-success mt-3 ms-3">Guardar Progreso</button>
@@ -48,7 +56,7 @@
                     <div class="col-md-6 offset-md-1 col-sm-12 fontP ">
 
                         <!-- progreso díario -->
-                        <h5>Progreso del día:</h5>
+                        <h4>Progreso del día:</h4>
                         
                         <div class="row d-flex align-items-center ms-3">
                             <div class="col-md-5 col-sm-12 ">
@@ -77,7 +85,7 @@
                         
                         
                         <!-- Progreso de la semana-->
-                        <h5 class="mt-5">Progreso de la semana:</h5>
+                        <h4 class="mt-5">Progreso de la semana:</h4>
                         
                         <div class="row d-flex align-items-center py-4">
                             <div class="col-md-12 col-sm-12 ">
@@ -107,17 +115,23 @@
 
         <script>
 
+            document.addEventListener("DOMContentLoaded", function () {
+                updateProgress();
+                    });
+
             function updateProgress() {
                 //Cantidad de acts por semana
                 const cantActSemana = {{$totalActS}};
+                const cantActSemanaR = {{$totalActRS}};
 
-                            //pPORCENTAJE POR DIA
+                            //PORCENTAJE POR DIA
                 //Identificación de check boxes
                 const checkboxes = document.querySelectorAll('.progressCheckbox');
                 //Indentifacación de la barra de progreso y num actividades
                 const progressBarDiario = document.getElementById('progressBarDiario');
                 const actividadesCompletas = document.getElementById('actC');
                 const actividadesFaltantes = document.getElementById('actF');
+
                 //Cantidad de checkboxes
                 const totalCheckboxes = checkboxes.length;
 
@@ -133,18 +147,21 @@
                 //Actualizar la cantidad de acts
                 actividadesCompletas.textContent = checkedCant;
                 actividadesFaltantes.textContent = totalCheckboxes - checkedCant;
-
-
-
+                
+              
 
 
                             //PORCENTAJE POR SEMANA
                 //Indentifacación de la barra de progreso
                 const progressBarSemana = document.getElementById('progressBarSemana');
 
-                // Calcular el porcentaje de progreso
-                const progresoPS = (checkedCant / cantActSemana) * 100;
+                // Calcular el porcentaje de progreso llevado
+                const progresoPSR = (100 / cantActSemana)* cantActSemanaR;
 
+                // Calcular el porcentaje de progreso
+                const progresoPSD = (checkedCant / cantActSemana) * 100;
+
+                const progresoPS = progresoPSD + progresoPSR;
                 // Actualizar la barra de progreso
                 progressBarSemana.style.width = progresoPS + '%';
                 progressBarSemana.textContent = Math.round(progresoPS) + '%';
