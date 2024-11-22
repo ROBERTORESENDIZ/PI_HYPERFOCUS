@@ -17,8 +17,10 @@ return new class extends Migration
             $table->longtext('descripcion');
             $table->datetime('fecha_creacion');
             $table->integer('duracion');
-            $table->datetime('fecha_hora_inicio');
-            $table->datetime('fecha_hora_fin');
+            $table->date('fecha_inicio');
+            $table->time('hora_inicio');
+            $table->date('fecha_fin');
+            $table->time('hora_fin');
             $table->tinyinteger('completada');
             $table->unsignedBigInteger('usuario_id');
             $table->unsignedBigInteger('pioridad_id');

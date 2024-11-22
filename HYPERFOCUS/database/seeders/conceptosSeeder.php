@@ -25,7 +25,7 @@ class conceptosSeeder extends Seeder
             [
                 'nombre' => 'Definicion verbos irregulares',
                 'definicion' => 'Terminacion irregular',
-                'conjunto_id' => 2,
+                'conjunto_id' => 1,
                 'created_at'=>Carbon::now()
             ],
             [
