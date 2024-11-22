@@ -10,7 +10,7 @@ class controladorHome extends Controller
 {
     public function vistaHome(){
         // Usuario (falta consulta)
-        $us = 1;
+        $us = 2;
         
         //Obtención fecha con formato
         $fechaconsulta = Carbon::now()->format('y/m/d');
@@ -35,7 +35,7 @@ class controladorHome extends Controller
             ->join('usuarios', 'actividades.usuario_id', '=', 'usuarios.id')
             ->select( 'actividades.nombre', 'actividades.completada', 'actividades.id')
             ->where('usuario_id', '=', $us)
-            ->where('fecha_hora_inicio','=', $fechaconsulta)
+            ->where('fecha_inicio','=', $fechaconsulta)
             ->get();
 
         // Numero de actividades segun la cosulta
@@ -43,7 +43,7 @@ class controladorHome extends Controller
 
         //Numero de actividades a la semana 
         $consultaActS = DB::table('actividades')
-            ->whereBetween('fecha_hora_inicio', [$inicioS, $finS])
+            ->whereBetween('fecha_inicio', [$inicioS, $finS])
             ->where('usuario_id','=', $us)
             ->get();
 
@@ -58,7 +58,7 @@ class controladorHome extends Controller
 
         // Numero de actividades realizadas
         $consultaActRS = DB::table('actividades')
-            ->whereBetween('fecha_hora_inicio', [$inicioS, $finS2])
+            ->whereBetween('fecha_inicio', [$inicioS, $finS2])
             ->where('usuario_id','=', $us)
             ->where('completada','=', '1')
             ->get();
