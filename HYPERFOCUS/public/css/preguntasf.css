@@ -1,0 +1,80 @@
+/* Contenedor de cada pregunta */
+.question-card {
+    border: none;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado de la primera pregunta (redondeado arriba) */
+.question-card:first-child .question-header {
+    background-color: #333;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 24px; /* Borde superior izquierdo más redondeado */
+    border-top-right-radius: 24px; /* Borde superior derecho más redondeado */
+}
+
+/* Encabezado de las preguntas siguientes (cuadrados) */
+.question-card:not(:first-child) .question-header {
+    background-color: #333;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* Botón de la pregunta */
+.question-button {
+    color: #ffffff !important; /* Texto blanco */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Icono de la flecha en el botón */
+.question-button::after {
+    content: '▼';
+    font-size: 16px;
+    color: #ffffff; /* Icono blanco */
+    transition: transform 0.3s ease;
+}
+
+/* Rotar el icono al expandirse */
+.question-button.collapsed::after {
+    transform: rotate(180deg);
+}
+
+/* Contenido de la pregunta */
+.question-content {
+    background-color: #f9f9c5;
+    color: #333;
+    padding: 15px 20px;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+/* Bordes redondeados en la parte superior solo para la primera pregunta */
+.question-card:first-child {
+    border-radius: 24px 24px 0 0; /* Redondeado solo arriba */
+}
+
+/* Bordes cuadrados para las preguntas siguientes */
+.question-card:not(:first-child) {
+    border-radius: 0; /* Sin bordes redondeados */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .question-button {
+        font-size: 14px;
+    }
+    .question-content {
+        font-size: 14px;
+    }
+}

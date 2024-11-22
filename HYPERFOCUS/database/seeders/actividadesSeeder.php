@@ -1,0 +1,69 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
+class actividadesSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+
+        // INSERTS MANUALES
+    DB::table('actividades')->insert([
+    [
+        'nombre' => 'Ir a la escuela',
+        'descripcion' => 'ir a la universidad',
+        'fecha_creacion' => Carbon::now(),
+        'duracion' => 120,
+        'fecha_inicio' => '2023-01-17',
+        'hora_inicio' => '16:01:00',
+        'fecha_fin' => '2023-01-17',
+        'hora_fin' => '18:00:00',
+        'completada' => 1,
+        'usuario_id' => 1,
+        'pioridad_id' => 1,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'nombre' => 'Ir al super',
+        'descripcion' => 'comprar todo lo necesario para mi evento del sabado',
+        'fecha_creacion' => Carbon::now(),
+        'duracion' => 60,
+        'fecha_inicio' => '2023-01-18',
+        'hora_inicio' => '16:00:00',
+        'fecha_fin' => '2023-01-18',
+        'hora_fin' => '19:01:00',
+        'completada' => 0,
+        'usuario_id' => 3,
+        'pioridad_id' => 2,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'nombre' => 'Ir a nadar',
+        'descripcion' => 'práctica habitual',
+        'fecha_creacion' => Carbon::now(),
+        'duracion' => 80,
+        'fecha_inicio' => '2023-01-19',
+        'hora_inicio' => '16:01:00',
+        'fecha_fin' => '2023-01-19',
+        'hora_fin' => '17:01:00',
+        'completada' => 1,
+        'usuario_id' => 2,
+        'pioridad_id' => 3,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ]
+]);
+
+
+    }
+}

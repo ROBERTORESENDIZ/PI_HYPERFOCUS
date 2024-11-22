@@ -1,0 +1,70 @@
+/* Estilo principal del display del temporizador */
+.display-timer {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background-color: #ffd6eb !important;
+    min-width: 150px;
+    transition: background-color 0.3s ease;
+}
+
+/* Color de fondo para el estado de concentración */
+.bg-pink {
+    background-color: #ffd6eb;
+}
+
+/* Color de fondo para el estado de descanso */
+.bg-blue {
+    background-color: #d6ebff;
+}
+
+/* Ajustes para inputs numéricos */
+input[type="number"] {
+    width: 70px !important;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 0.375rem 0.75rem;
+}
+
+/* Removemos las flechas de los inputs numéricos */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Estilos para el contenedor principal */
+.concentration-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Estilos para las secciones de intervalos */
+.interval-section {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Estilos para los botones */
+.btn-control {
+    min-width: 100px;
+    margin: 0 5px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .display-timer {
+        font-size: 2rem;
+        min-width: 120px;
+    }
+    
+    .interval-inputs {
+        flex-wrap: wrap;
+    }
+    
+    input[type="number"] {
+        width: 60px !important;
+    }
+}

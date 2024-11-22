@@ -5,3 +5,62 @@ body{
     
     
 }
+
+/* Estilos generales del formulario */
+.card {
+    border: 1px solid #c3c3c3;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+.text-center i {
+    font-size: 3rem;
+    color: #4a4a4a;
+}
+
+/* Botón de inicio de sesión */
+.btn-primary {
+    background-color: #a785f6; /* Ajusta el color al morado de la imagen */
+    border: none;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #8f6bc4; /* Un tono más oscuro para el hover */
+}
+
+/* Campos del formulario */
+.form-control {
+    border: 1px solid #c3c3c3;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Estilos para el enlace de "¿Olvidaste la contraseña?" */
+a {
+    color: #4a4a4a;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+a:hover {
+    color: #a785f6;
+    text-decoration: none;
+}
+
+/* Estilos para el icono y el contenedor del formulario */
+.text-center i {
+    font-size: 3rem;
+    color: #000;
+}
+
+.text-center h2 {
+    color: #4a4a4a;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
