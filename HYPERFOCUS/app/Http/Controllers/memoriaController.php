@@ -72,13 +72,13 @@ class memoriaController extends Controller
      */
     public function destroy($id)
     {
-        // $conjunto= DB::table('conjuntos')->where('id',$id)->first();
+        $conjunto= DB::table('conjuntos')->where('id',$id)->first();
 
-        // DB::table('conjuntos')
-        // ->where('id',$id)
-        // ->delete();
+        DB::table('conjuntos')
+        ->where('id',$id)
+        ->delete();
 
-        // session()->flash('eliminar' .  $conjunto->nombre  .'El conjunto ha sido eliminado correctamente');
-        // return to_route('rutamemoria');
+         session()->flash('destroy', 'El conjunto'.  $conjunto->nombre  . 'ha sido eliminado correctamente');
+         return to_route('rutamemoria');
     }
 }

@@ -27,4 +27,4 @@ Route::view('/mislogros','misLogros')->name('rutamislogros');
 Route::get('/memoria',[memoriaController::class,'index'])->name('rutamemoria');
 Route::post('/memoria/insert',[memoriaController::class,'store'])->name('rutainsertconjunto');
 
-
+Route::delete('/memoria/{id}',[memoriaController::class,'destroy'])->name('rutadeleteconjuto');
