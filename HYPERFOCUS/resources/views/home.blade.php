@@ -10,35 +10,52 @@
                 <div class="row">
 
                     <div class="mb-5 col-md-12 col-sm-12 text-center fontP">
-                        <h1>Hola Usuario!</h1>
+                        <h1><strong>Hola {{$consultaUSER[0]->nombre}}!</strong></h1>
                     </div>
 
                     <!-- Actividades del día -->
                     <div class="col-md-4 ms-md-5  col-sm-12 mb-3 fontP ">
-                        <h5>Actividades del día: </h5>
+                        <h4>Actividades del día: </h4>
                         <h5 class="text-center">{{$nombreDia }} {{ $fechaHoy}}</h5>
+                        
+                        <!-- validar variable -->
+                        @if($consultaA->isEmpty())
+                            <h4 class="mt-5">¡Yuju! ¡No tienes actividades para el día de hoy! </h4>
+                        @else
+                            <!-- Inicio card list  -->
+                            <div class=" fontS card border-dark ms-md-3" >
+                                <ul class="list-group list-group-flush ">
+                                    <form action="/guardarProgreso" method="POST">
+                                        @csrf
+                                        <!-- Iteramos las actividades -->
+                                        @foreach($consultaA as $cliente)
+                                        <li class="list-group-item">
+                                            <div class="form-check">
+                                                <!-- Validamos que actividades estan realizadas o no -->
+                                                @if( $cliente->completada == 0)
+                                                    <input class="form-check-input border-dark me-2 mb-1 " name="{{$cliente->id}}" type="hidden"  value="0">
+                                                    <input class="form-check-input border-dark me-2 mb-1 progressCheckbox" name="{{$cliente->id}}" type="checkbox"  value="1"  onchange="updateProgress()">
+                                                @else
+                                                    <input class="form-check-input border-dark me-2 mb-1 " name="{{$cliente->id}}" type="hidden"  value="0">
+                                                    <input class="form-check-input border-dark me-2 mb-1 progressCheckbox" name="{{$cliente->id}}" type="checkbox" checked="checked" value="1"  onchange="updateProgress()">
+                                                @endif
 
-                        <!-- Inicio card list  -->
-                        <div class=" fontS card border-dark ms-md-3" >
-                            <ul class="list-group list-group-flush ">
-                                <form action="/guardarProgreso" method="POST">
-                                    @csrf
-                                @for($i=0; $i< $totalActD; $i++)
-                                    <li class="list-group-item">
-                                        <div class="form-check">
-                                            <input class="form-check-input border-dark me-2 mb-1 progressCheckbox" type="checkbox" value="" id="checkbox-{{$i}}" onchange="updateProgress()">
-                                            <label class="form-check-label" for="flexCheckIndeterminate">
-                                               {{$actD[$i]}}
-                                            </label>
-                                        </div>
-                                    </li>
-                                @endfor
-                                
-                                
-                            </ul>
-                        </div>
-                        <button type="sumit" class=" btn btn-success mt-3 ms-3">Guardar Progreso</button>
-                        </form>
+                                                <label class="form-check-label" for="flexCheckIndeterminate">
+                                                {{$cliente->nombre}}
+                                                </label>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                </ul>
+                            </div>
+                            <button type="sumit" class=" btn btn-success mt-3 ms-3">Guardar Progreso</button>
+                            </form>
+                        @endif
+
+                        
+
+
+
                     </div>
                     
 
@@ -48,7 +65,7 @@
                     <div class="col-md-6 offset-md-1 col-sm-12 fontP ">
 
                         <!-- progreso díario -->
-                        <h5>Progreso del día:</h5>
+                        <h4>Progreso del día:</h4>
                         
                         <div class="row d-flex align-items-center ms-3">
                             <div class="col-md-5 col-sm-12 ">
@@ -77,7 +94,7 @@
                         
                         
                         <!-- Progreso de la semana-->
-                        <h5 class="mt-5">Progreso de la semana:</h5>
+                        <h4 class="mt-5">Progreso de la semana:</h4>
                         
                         <div class="row d-flex align-items-center py-4">
                             <div class="col-md-12 col-sm-12 ">
@@ -107,47 +124,85 @@
 
         <script>
 
+            document.addEventListener("DOMContentLoaded", function () {
+                updateProgress();
+                    });
+
             function updateProgress() {
                 //Cantidad de acts por semana
                 const cantActSemana = {{$totalActS}};
+                const cantActSemanaR = {{$totalActRS}};
+                const consultaA ='{{$consultaA}}';
+                console.log(consultaA);
 
-                            //pPORCENTAJE POR DIA
-                //Identificación de check boxes
-                const checkboxes = document.querySelectorAll('.progressCheckbox');
-                //Indentifacación de la barra de progreso y num actividades
-                const progressBarDiario = document.getElementById('progressBarDiario');
-                const actividadesCompletas = document.getElementById('actC');
-                const actividadesFaltantes = document.getElementById('actF');
-                //Cantidad de checkboxes
-                const totalCheckboxes = checkboxes.length;
+                if (consultaA === '[]') {
+                    //Marcar compleo el progreso diario
+                    const progressBarDiario = document.getElementById('progressBarDiario');
+                    progressBarDiario.style.width = 100 + '%';
+                    progressBarDiario.textContent = Math.round(100) + '%';
 
-                // Contar cuántos checkboxes están marcados
-                const checkedCant = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+                    // definir como 0 la cantidad dee checkboxs
+                    const checkedCant = 0;
+                                //PORCENTAJE POR SEMANA
+                    //Indentifacación de la barra de progreso
+                    const progressBarSemana = document.getElementById('progressBarSemana');
 
-                // Calcular el porcentaje de progreso
-                const progresoPD = (checkedCant / totalCheckboxes) * 100;
+                    // Calcular el porcentaje de progreso llevado
+                    const progresoPS = (100 / cantActSemana)* cantActSemanaR;
 
-                // Actualizar la barra de progreso
-                progressBarDiario.style.width = progresoPD + '%';
-                progressBarDiario.textContent = Math.round(progresoPD) + '%';
-                //Actualizar la cantidad de acts
-                actividadesCompletas.textContent = checkedCant;
-                actividadesFaltantes.textContent = totalCheckboxes - checkedCant;
-
-
+                    // Actualizar la barra de progreso
+                    progressBarSemana.style.width = progresoPS + '%';
+                    progressBarSemana.textContent = Math.round(progresoPS) + '%';
+                }else{
 
 
+                       //PORCENTAJE POR DIA
+                    //Identificación de check boxes
+                    const checkboxes = document.querySelectorAll('.progressCheckbox');
+                    //Indentifacación de la barra de progreso y num actividades
+                    const progressBarDiario = document.getElementById('progressBarDiario');
+                    const actividadesCompletas = document.getElementById('actC');
+                    const actividadesFaltantes = document.getElementById('actF');
 
-                            //PORCENTAJE POR SEMANA
-                //Indentifacación de la barra de progreso
-                const progressBarSemana = document.getElementById('progressBarSemana');
+                    //Cantidad de checkboxes
+                    const totalCheckboxes = checkboxes.length;
 
-                // Calcular el porcentaje de progreso
-                const progresoPS = (checkedCant / cantActSemana) * 100;
+                    // Contar cuántos checkboxes están marcados
+                    const checkedCant = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
 
-                // Actualizar la barra de progreso
-                progressBarSemana.style.width = progresoPS + '%';
-                progressBarSemana.textContent = Math.round(progresoPS) + '%';
+                    // Calcular el porcentaje de progreso
+                    const progresoPD = (checkedCant / totalCheckboxes) * 100;
+
+                    // Actualizar la barra de progreso
+                    progressBarDiario.style.width = progresoPD + '%';
+                    progressBarDiario.textContent = Math.round(progresoPD) + '%';
+                    //Actualizar la cantidad de acts
+                    actividadesCompletas.textContent = checkedCant;
+                    actividadesFaltantes.textContent = totalCheckboxes - checkedCant;
+
+                                //PORCENTAJE POR SEMANA
+                    //Indentifacación de la barra de progreso
+                    const progressBarSemana = document.getElementById('progressBarSemana');
+
+                    // Calcular el porcentaje de progreso llevado
+                    const progresoPSR = (100 / cantActSemana)* cantActSemanaR;
+
+                    // Calcular el porcentaje de progreso del dia
+                    const progresoPSD = (checkedCant / cantActSemana) * 100;
+                    
+                    //Sumar porcentajes
+                    const progresoPS = progresoPSD + progresoPSR;
+                    // Actualizar la barra de progreso
+                    progressBarSemana.style.width = progresoPS + '%';
+                    progressBarSemana.textContent = Math.round(progresoPS) + '%';
+                }
+
+                         
+                
+              
+
+
+                
             }
         </script>
         
