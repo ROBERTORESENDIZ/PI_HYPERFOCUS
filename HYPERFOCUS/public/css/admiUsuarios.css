@@ -1,0 +1,54 @@
+/* usuarios.css */
+.circle-initial {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+    line-height: 35px;
+    text-align: center;
+    border: 2px solid #e9ecef;
+}
+
+.table-bordered {
+    border: 1px solid #edcae8;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+.table thead {
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #bb2d3b;
+    border-color: #b02a37;
+}
+
+.text-primary {
+    border-color: #0d6efd !important;
+    background-color: #0d6efd !important;
+}
+
+.text-secondary {
+    border-color: #6c757d !important;
+    background-color: #6c757d !important;
+}
+
