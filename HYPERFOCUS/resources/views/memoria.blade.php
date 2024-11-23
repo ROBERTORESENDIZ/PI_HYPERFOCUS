@@ -15,6 +15,41 @@
     </a>
 </div>
 
+@session('destroy')
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '¡Eliminado!',
+            text: '{{ session("destroy") }}',
+            timer: 3000,
+            showConfirmButton: false
+        });
+    </script>
+@endsession
+
+ <script>
+        function confirmarEliminacion(id, nombre) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(`form-eliminar-${id}`).submit();
+                }
+            })
+        }
+ </script>
+
+
+
+
+
 <div class="container">
     @foreach ($consultaConjunto as $conjunto)
         <div class="card">
@@ -24,7 +59,13 @@
             <div class="buttons">
                 <button class="practice-btn">Practicar</button>
                 <a href="{{ route('rutamemoriacrud') }}" class="edit-btn">Editar</a>
-                <button class="delete-btn">Eliminar</button>
+                <form id="form-eliminar-{{ $conjunto->id }}" action="{{ route('rutadeleteconjuto', $conjunto->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="button" class="delete-btn" onclick="confirmarEliminacion('{{ $conjunto->id }}', '{{ $conjunto->nombre }}')">
+                    Eliminar
+                </button>
+            </form>
             </div>
         </div>
     @endforeach
