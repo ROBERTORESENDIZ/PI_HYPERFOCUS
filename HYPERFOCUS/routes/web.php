@@ -26,5 +26,6 @@ Route::view('/mislogros','misLogros')->name('rutamislogros');
 //Nuevas rutas para CRUD (samuel)
 Route::get('/memoria',[memoriaController::class,'index'])->name('rutamemoria');
 Route::post('/memoria/insert',[memoriaController::class,'store'])->name('rutainsertconjunto');
-
+Route::get('/memoria/{id}/edit',[memoriaController::class,'edit'])->name('rutaeditconjunto');
+Route::put('/memoria/{id}',[memoriaController::class,'update'])->name('rutaupdateconjunto');
 Route::delete('/memoria/{id}',[memoriaController::class,'destroy'])->name('rutadeleteconjuto');
