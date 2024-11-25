@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class memoriacrudcontroller extends Controller
 {
@@ -11,7 +12,8 @@ class memoriacrudcontroller extends Controller
      */
     public function index()
     {
-        //
+        $conceptos = DB::table('conceptos')->get();
+        return view('mwcrud',compact('memoriacrud'));
     }
 
     /**

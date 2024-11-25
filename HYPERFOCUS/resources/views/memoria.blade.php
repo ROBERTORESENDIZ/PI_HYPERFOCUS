@@ -11,6 +11,7 @@
     </button>
 </div>
 
+<!-- Alertas de SweetAlert para las sesiones -->
 @if(session('destroy'))
     <script>
         Swal.fire({
@@ -26,9 +27,23 @@
 @if(session('update'))
     <script>
         Swal.fire({
-            title: "Actualizado",
+            icon: 'success',
+            title: '¡Actualizado!',
             text: '{{ session("update") }}',
-            icon: "success"
+            timer: 3000,
+            showConfirmButton: false
+        });
+    </script>
+@endif
+
+@if(session('guardar'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '¡Guardado!',
+            text: '{{ session("guardar") }}',
+            timer: 3000,
+            showConfirmButton: false
         });
     </script>
 @endif
@@ -36,33 +51,42 @@
 <div class="container">
     <div class="row g-3">
         @foreach ($consultaConjunto as $conjunto)
-            <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white">
-                        {{ $conjunto->nombre }}
-                    </div>
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-muted">Descripción</h6>
-                        <p class="card-text">{{ $conjunto->descripcion }}</p>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-success btn-sm">Practicar</button>
-                            <a href="{{ route('rutamemoriacrud') }}" class="btn btn-warning btn-sm">Editar</a>
-                            <form id="form-eliminar-{{ $conjunto->id }}" action="{{ route('rutadeleteconjuto', $conjunto->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmarEliminacion('{{ $conjunto->id }}', '{{ $conjunto->nombre }}')">
-                                    Eliminar
-                                </button>
-                            </form>
-                        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white position-relative">
+                    {{ $conjunto->nombre }}
+                    <button class="btn btn-light btn-sm position-absolute top-0 end-0 m-1"
+                            title="Editar"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editModal"
+                            data-id="{{ $conjunto->id }}"
+                            data-nombre="{{ $conjunto->nombre }}"
+                            data-descripcion="{{ $conjunto->descripcion }}">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Descripción</h6>
+                    <p class="card-text">{{ $conjunto->descripcion }}</p>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-success btn-sm">Practicar</button>
+                        <a href="{{ route('rutamemoriacrud') }}" class="btn btn-warning btn-sm">Agregar conceptos</a>
+                        <form id="form-eliminar-{{ $conjunto->id }}" action="{{ route('rutadeleteconjuto', $conjunto->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmarEliminacion('{{ $conjunto->id }}', '{{ $conjunto->nombre }}')">
+                                Eliminar
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
         @endforeach
     </div>
 </div>
 
-<!-- Modal con form para insertar nuevo registro -->
+<!-- Modal para crear un nuevo conjunto -->
 <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -91,6 +115,36 @@
     </div>
 </div>
 
+<!-- Modal para editar un conjunto -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Editar conjunto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <form action="{{ route('rutaupdateconjunto',$conjunto->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="edit-titulo" class="form-label">Título</label>
+                        <input type="text" class="form-control" id="edit-titulo" name="nombre" value="{{ $conjunto->nombre }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-descripcion" class="form-label">Descripción</label>
+                        <input class="form-control" id="edit-descripcion" name="descripcion" rows="3" value="{{ $conjunto->descripcion }}"></input>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script>
     function confirmarEliminacion(id, nombre) {
         Swal.fire({
@@ -98,15 +152,16 @@
             text: "¡No podrás revertir esto!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'Cancelar'
+            confirmButtonText: '¡Sí, eliminar!',
+            cancelButtonText: 'Cancelar',
         }).then((result) => {
             if (result.isConfirmed) {
-                document.getElementById(`form-eliminar-${id}`).submit();
+                // Enviar el formulario de eliminación
+                document.getElementById('form-eliminar-' + id).submit();
             }
-        })
+        });
     }
 </script>
+
+
 @endsection
