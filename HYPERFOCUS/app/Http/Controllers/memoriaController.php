@@ -54,17 +54,30 @@ class memoriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $concepto= DB::table('conceptos')
+        ->where('id',$id)
+        ->first();
+        return view('rutamemoriacrud',compact('concepto'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,  $id)
     {
-        //
+        DB::table('conceptos')
+        ->where('id',$id)
+        ->update([
+            'nombre' => $request->nombre,
+            'definicion' => $request->definicion,
+            'updated_at' => Carbon::now()
+        ]);
+        $concepto= $request->input('nombre');
+        session()->flash('update','El conjunto '. $concepto .' ha sido actualizado correctamente');
+        return to_route('rutamemoria');
     }
 
     /**
