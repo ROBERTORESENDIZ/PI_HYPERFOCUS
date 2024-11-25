@@ -56,11 +56,8 @@ class memoriaController extends Controller
      */
     public function edit($id)
     {
-        $concepto= DB::table('conceptos')
-        ->where('id',$id)
-        ->first();
-        return view('rutamemoriacrud',compact('concepto'));
-
+        $conjunto= DB::table('conjuntos')->where('id',$id)->first();
+        return view('memoria',compact('conjunto'));
     }
 
     /**
@@ -68,15 +65,15 @@ class memoriaController extends Controller
      */
     public function update(Request $request,  $id)
     {
-        DB::table('conceptos')
+        DB::table('conjuntos')
         ->where('id',$id)
         ->update([
             'nombre' => $request->nombre,
-            'definicion' => $request->definicion,
+            'descripcion' => $request->descripcion,
             'updated_at' => Carbon::now()
         ]);
-        $concepto= $request->input('nombre');
-        session()->flash('update','El conjunto '. $concepto .' ha sido actualizado correctamente');
+        $conjunto= $request->input('nombre');
+        session()->flash('update','El conjunto '. $conjunto .' ha sido actualizado correctamente');
         return to_route('rutamemoria');
     }
 

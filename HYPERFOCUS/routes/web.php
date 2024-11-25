@@ -29,3 +29,5 @@ Route::post('/memoria/insert',[memoriaController::class,'store'])->name('rutains
 Route::get('/memoria/{id}/edit',[memoriaController::class,'edit'])->name('rutaeditconjunto');
 Route::put('/memoria/{id}',[memoriaController::class,'update'])->name('rutaupdateconjunto');
 Route::delete('/memoria/{id}',[memoriaController::class,'destroy'])->name('rutadeleteconjuto');
+
+//Rutas de memoriacrud (samuel)
