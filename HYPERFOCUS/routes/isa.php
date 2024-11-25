@@ -15,3 +15,10 @@ Route::get('/mislogros', [LogrosController::class, 'mostrarLogros'])->name('ruta
 Route::post('/iniciarsesion', [inicioSController::class, 'iniciarsesion'])->name('rutainiciarsesion');
 
 Route::post('/registrarse', [inicioSController::class, 'registrarse'])->name('registrarse');
+
+Route::get('/admiUsuarios', [inicioSController::class, 'listarUsuarios'])->name('admiUsuarios');
+Route::get('/usuarios/{id}/editar', [inicioSController::class, 'editarUsuario'])->name('usuarios.editar');
+Route::post('/usuarios/{id}/actualizar', [inicioSController::class, 'actualizarUsuario'])->name('usuarios.actualizar');
+Route::delete('/eliminarUsuario/{id}', [InicioSController::class, 'eliminarUsuario'])->name('eliminarUsuario');
+
+

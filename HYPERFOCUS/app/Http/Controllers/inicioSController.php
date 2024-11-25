@@ -7,6 +7,8 @@ use App\Http\Requests\validadorR;
 use Illuminate\Support\Facades\DB;  //Query Builder
 use Illuminate\Support\Facades\Hash;  // Para encriptar la contraseña
 use Illuminate\Support\Facades\Auth;  // Para manejar la autenticación
+use Illuminate\Http\Request;
+
 
 class inicioSController extends Controller
 {
@@ -59,8 +61,72 @@ class inicioSController extends Controller
             'updated_at' => now()
         ]);
 
-        // Redirigimos al home después de un registro exitoso
+        // Retornamos a home sin redirigir a admiUsuarios
         return redirect()->route('rutahome');
     }
+
+    public function listarUsuarios()
+    {   
+        // Obtenemos todos los usuarios junto con su rol
+        $usuarios = DB::table('usuarios')
+            ->join('roles', 'usuarios.rol_id', '=', 'roles.id')
+            ->select('usuarios.*', 'roles.nombre as tipo_perfil') // Seleccionamos el nombre del rol como tipo_perfil
+            ->get();
+
+        // Retornamos los datos a la vista
+        return view('admiUsuarios', ['usuarios' => $usuarios]);
+    }
+
+    public function editarUsuario($id)
+    {
+        // Obtener el usuario por su ID
+        $usuario = DB::table('usuarios')
+            ->join('roles', 'usuarios.rol_id', '=', 'roles.id')
+            ->select('usuarios.*', 'roles.nombre as tipo_perfil')
+            ->where('usuarios.id', $id)
+            ->first();
+
+        // Obtener todos los roles disponibles para el selector
+        $roles = DB::table('roles')->pluck('nombre', 'id');
+
+        return view('editarUsuario', compact('usuario', 'roles'));
+    }
+
+    public function actualizarUsuario(Request $request, $id)
+    {
+        // Validar los datos
+        $request->validate([
+            'estatus' => 'required|boolean',
+            'rol_id' => 'required|exists:roles,id',
+        ]);
+
+        // Actualizar los datos en la tabla
+        DB::table('usuarios')
+            ->where('id', $id)
+            ->update([
+                'estatus' => $request->estatus,
+                'rol_id' => $request->rol_id,
+                'updated_at' => now(),
+            ]);
+
+        // Redirigir con un mensaje de éxito
+        return redirect()->route('admiUsuarios')->with('success', 'Usuario actualizado correctamente.');
+    }
+
+    public function eliminarUsuario($id)
+    {
+        // Buscar el usuario y eliminarlo
+        $usuario = DB::table('usuarios')->where('id', $id)->first();
+
+        if (!$usuario) {
+            return redirect()->route('admiUsuarios')->withErrors(['error' => 'Usuario no encontrado.']);
+        }
+
+        DB::table('usuarios')->where('id', $id)->delete();
+
+        // Redirigir con un mensaje de éxito
+        return redirect()->route('admiUsuarios')->with('deleted', 'Usuario eliminado correctamente.');
+    }
+
 }
 
