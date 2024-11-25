@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\inicioSController;
 use App\Http\Controllers\LogrosController;
+use App\Http\Controllers\controladorBienvenida;
+
 
 Route::get('/mislogros', [LogrosController::class, 'mostrarLogros'])->name('rutamislogros');
 
@@ -20,5 +22,7 @@ Route::get('/admiUsuarios', [inicioSController::class, 'listarUsuarios'])->name(
 Route::get('/usuarios/{id}/editar', [inicioSController::class, 'editarUsuario'])->name('usuarios.editar');
 Route::post('/usuarios/{id}/actualizar', [inicioSController::class, 'actualizarUsuario'])->name('usuarios.actualizar');
 Route::delete('/eliminarUsuario/{id}', [InicioSController::class, 'eliminarUsuario'])->name('eliminarUsuario');
+
+Route::get('/bienvenida/{nombreUsuario}', [ControladorBienvenida::class, 'vistaBienvenida'])->name('rutaBienvenida');
 
 
