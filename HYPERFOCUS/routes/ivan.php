@@ -12,5 +12,6 @@ Route::view('/concentracion', 'concentracion')->name('rutaconcentracion');
 // Rutas para Mi Semana
 Route::get('/mi-semana', [MiSemanaController::class, 'index'])->name('rutamisemana');
 Route::post('/mi-semana/actividad', [MiSemanaController::class, 'guardarActividad'])->name('actividad.guardar');
-Route::delete('/mi-semana/actividad/{id}', [MiSemanaController::class, 'eliminarActividad'])->name('actividad.eliminar');
-Route::post('/mi-semana/tiempo/{tipo}', [MiSemanaController::class, 'guardarTiempo'])->name('tiempo.guardar');
+Route::post('/mi-semana/eliminar/{id}/{nombre}', [MiSemanaController::class, 'eliminarActividad'])->name('actividad.eliminar');
+//Route::post('/mi-semana/tiempo/{tipo}', [MiSemanaController::class, 'guardarTiempo'])->name('tiempo.guardar');
+Route::post('/mi-semana/editar/{id}', [MiSemanaController::class, 'editarActividad'])->name('actividad.editar');

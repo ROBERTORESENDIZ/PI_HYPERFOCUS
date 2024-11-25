@@ -49,21 +49,25 @@ class inicioSController extends Controller
         }
 
         // Si no existe, creamos el nuevo usuario
-        DB::table('usuarios')->insert([
+        $nuevoUsuario = [
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
             'correo_electronico' => $request->email,
-            'contraseña' => Hash::make($request->password),  // Encriptamos la contraseña
+            'contraseña' => Hash::make($request->password), // Encriptamos la contraseña
             'foto_perfil' => '',  
-            'edad' => 18,  //valor predeterminado 
-            'rol_id' => 2,  //rol por defecto
+            'edad' => 18, // valor predeterminado 
+            'rol_id' => 2, // rol por defecto
             'created_at' => now(),
             'updated_at' => now()
-        ]);
+        ];
 
-        // Retornamos a home sin redirigir a admiUsuarios
-        return redirect()->route('rutahome');
+        // Insertamos al usuario en la base de datos
+        DB::table('usuarios')->insert($nuevoUsuario);
+
+        // Redirigimos a la vista de bienvenida con el nombre del usuario
+        return redirect()->route('rutaBienvenida', ['nombreUsuario' => $nuevoUsuario['nombre']]);
     }
+
 
     public function listarUsuarios()
     {   
