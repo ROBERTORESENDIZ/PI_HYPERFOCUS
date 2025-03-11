@@ -26,6 +26,15 @@ return Application::configure(basePath: dirname(__DIR__))
 
             Route::middleware('web')
             ->group(base_path('routes/ivan.php'));
+
+            Route::middleware('web')
+            ->group(base_path('routes/axel.php'));
+
+            Route::middleware('web')
+            ->group(base_path('routes/jenni.php'));
+
+            Route::middleware('web')
+            ->group(base_path('routes/antonio.php'));
         },
     )
 
