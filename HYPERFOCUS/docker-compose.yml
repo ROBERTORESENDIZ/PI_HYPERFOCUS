@@ -2,9 +2,12 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pi_hyperfocus_app
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
       - .:/var/www/html
     environment:
@@ -14,12 +17,16 @@ services:
       - db
 
   db:
-    image: mysql:8.0
+    image: mysql:8.0.30
+    container_name: pi_hyperfocus_db
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: hyperfocus
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: pi_hyperfocus
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+    ports:
+      - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
 
